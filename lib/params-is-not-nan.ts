@@ -5,13 +5,13 @@ import express from 'express'
  * @param keys {string[]}
  * @return {express.Handler}
  */
-export default function (...keys: string[]): express.Handler {
+export default function (...keys: (string | string[])[]): express.Handler {
   if (Array.isArray(keys[0])) {
     keys = keys[0]
   }
 
   return (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    for (const key of keys) {
+    for (const key of <string[]>keys) {
       if (isNaN(+req.params[key])) {
         const status = 400
 

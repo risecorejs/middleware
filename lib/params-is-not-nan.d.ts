@@ -4,4 +4,4 @@ import express from 'express';
  * @param keys {string[]}
  * @return {express.Handler}
  */
-export default function (...keys: string[]): express.Handler;
+export default function (...keys: (string | string[])[]): express.Handler;
